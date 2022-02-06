@@ -2,9 +2,10 @@ package weight
 
 // this package implement weighted round-robin load balancing algorithm
 // ---
-// first, it will increase current_weight by its weight
+// first, it will increase all backend current_weight by their respective weight
 // then it will choose backend server that have biggest current_weight
-// after that, selected backend current_weight will be reduced by total_weight
+// after that, current_weight of selected backend will be reduced by total_weight
+// ~ repeat.
 
 // Backend hold information about backend server
 type Backend struct {
@@ -13,11 +14,12 @@ type Backend struct {
 	CurrentWeight int
 }
 
+// Weight list of all backend server
 type Weight struct {
 	Items []*Backend
 }
 
-// NewWeight returns Wight struct
+// NewWeight returns Weight struct
 func NewWeight() *Weight {
 	return &Weight{}
 }
